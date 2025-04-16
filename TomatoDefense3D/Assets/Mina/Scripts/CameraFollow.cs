@@ -10,7 +10,7 @@ public class CameraFollow : MonoBehaviour
     void LateUpdate() 
     {
         if (target == null) return;
-        // もしターゲットがなければ、これいじょうしょりをしない
+        // もしターゲットがなければ、これ以上処理しない
 
         // ターゲットの背中側の位置を計算する
         Vector3 desiredPosition = target.position 

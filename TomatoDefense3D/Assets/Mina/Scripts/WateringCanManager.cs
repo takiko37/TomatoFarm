@@ -32,7 +32,7 @@ public class WateringCanManager : MonoBehaviour
         canCountText.text = $"じょうろの数:{currentCanCount}/{maxCanCount}";
         if (currentCanCount == maxCanCount)
         {
-            massageText.gameObject.SetActive(true);
+            massageText.gameObject.SetActive(true);//「畑に戻ろう！」
         }
         return true; // 取れたよ！
     }

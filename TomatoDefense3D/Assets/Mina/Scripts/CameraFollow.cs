@@ -20,7 +20,6 @@ public class CameraFollow : MonoBehaviour
 
         // なめらかにカメラを移動する
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
-        // 現在のカメラ位置と理想の位置を、なめらかにまぜる
 
         transform.position = smoothedPosition;
         // カメラの位置を更新

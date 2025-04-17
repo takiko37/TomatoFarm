@@ -25,7 +25,9 @@ namespace UnityChan
         public GameObject attackCollider; // 攻撃の当たり判定
         public ParticleSystem attackEffect; // 攻撃時のエフェクト（手から出る光）
         public int enemyCount = 0;
+        public AudioSource runAudio;
 
+        private bool isRunningSoundPlaying = false;
 
         private CapsuleCollider col; // ユニティちゃんの当たり判定（カプセル型）
         private Rigidbody rb; // ユニティちゃんの重さ・物理演算の処理
@@ -38,6 +40,8 @@ namespace UnityChan
         private AnimatorStateInfo currentBaseState; // 今どのアニメーション中か？をメモしておく
 
         private GameObject cameraObject; // カメラのオブジェクト（位置や角度を知るため）
+        
+        
 
         // アニメーションの「状態」を覚えておく
         static int idleState = Animator.StringToHash("Base Layer.Idle"); // 待機中
@@ -87,6 +91,25 @@ namespace UnityChan
             if (v > 0.1f) velocity *= forwardSpeed; // 前に進むときの速さ
             else if (v < -0.1f) velocity *= backwardSpeed; // 後ろに進むときの速さ
 
+            // ===== 足音再生の処理（走ってる間だけ） =====
+            if ((Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) && currentBaseState.nameHash == locoState)
+            {
+                if (!isRunningSoundPlaying)
+                {
+                    runAudio.Play(); // 再生！
+                    isRunningSoundPlaying = true;
+                }
+            }
+            else
+            {
+                if (isRunningSoundPlaying)
+                {
+                    runAudio.Stop(); // 停止！
+                    isRunningSoundPlaying = false;
+                }
+            }
+
+            
             // ジャンプボタンが押されたかチェック
             if (Input.GetButtonDown("Jump"))
             {
@@ -167,6 +190,8 @@ namespace UnityChan
                 }
             }
         }
+        
+        
 
         //  コライダーを元に戻す関数
         void resetCollider()

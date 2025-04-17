@@ -6,6 +6,8 @@ public class HowToPlayUI : MonoBehaviour
     public GameObject howToPanel; // 操作説明パネル
     public Button howToButton;    // 「操作方法」ボタン
     public Button backButton;     // 「戻る」ボタン
+    public AudioSource howToSound;
+    public AudioSource backSound;
 
     void Start()
     {
@@ -19,11 +21,13 @@ public class HowToPlayUI : MonoBehaviour
 
     void ShowPanel()
     {
+        howToSound.Play();
         howToPanel.SetActive(true);
     }
 
     void HidePanel()
     {
+        backSound.Play();
         howToPanel.SetActive(false);
     }
 }

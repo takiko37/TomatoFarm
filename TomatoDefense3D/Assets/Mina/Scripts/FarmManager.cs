@@ -11,7 +11,7 @@ public class FarmManager : MonoBehaviour
     public GameObject clearPanel; 
     public WateringCanManager wateringCanManager;
     public TextMeshProUGUI massageText;
-   
+    public AudioSource levelUpSound;
     private int currentLevel = 1; // 現在の畑レベル
 
     
@@ -43,6 +43,7 @@ public class FarmManager : MonoBehaviour
                     PlayLevelUpEffect();
                     currentLevel++;
                     wateringCanManager.ResetCanCount(2);
+                    levelUpSound.Play();
                     Debug.Log("畑レベル 2 にアップ！");
                 }
                 break;
@@ -55,7 +56,7 @@ public class FarmManager : MonoBehaviour
                     PlayLevelUpEffect();
                     currentLevel++;
                     wateringCanManager.ResetCanCount(3); 
-
+                    levelUpSound.Play();
                     Debug.Log("畑レベル 3 にアップ！");
                 }
                 break;
@@ -68,6 +69,7 @@ public class FarmManager : MonoBehaviour
                     PlayLevelUpEffect();
                     currentLevel++;
                     Debug.Log("畑レベル 4 にアップ！（ゲームクリア！）");
+                    levelUpSound.Play();
                     // クリア演出追加できるよ！
                     clearPanel.SetActive(true);
                     massageText.gameObject.SetActive(false);

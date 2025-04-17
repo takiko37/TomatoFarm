@@ -50,10 +50,7 @@ public class PlayerController : MonoBehaviour
 
         // 上下方向の移動は velocity に任せるから一旦 0
         move.y = 0f;
-
-        // 実際にキャラクターを移動させる（横移動だけ）
-        //controller.Move(move * moveSpeed * Time.deltaTime);
-
+        
         // 入力があるときだけキャラクター（かお）の向きを変更する
         if (move != Vector3.zero)
         {
@@ -69,7 +66,7 @@ public class PlayerController : MonoBehaviour
                 Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
         }
 
-        // 🔥 攻撃の入力を追加！🔥
+       
         if (Input.GetMouseButtonDown(1)) // 右クリックで攻撃！（0 が左クリック、1 が右クリック）
         {
             animator.SetTrigger("AtackTrigger"); // AttackTrigger を実行！
